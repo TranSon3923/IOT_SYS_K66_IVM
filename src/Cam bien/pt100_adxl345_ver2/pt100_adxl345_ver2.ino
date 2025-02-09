@@ -8,9 +8,9 @@ Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified(12345);
 Adafruit_MAX31865 thermo = Adafruit_MAX31865(5, 23, 19, 18);
 
 // Cấu hình mẫu
-#define SAMPLE_RATE 1000      // Tốc độ đọc (1000 Hz)
-#define SAMPLE_COUNT 1000     // Số mẫu đọc mỗi giây
-#define THRESHOLD 0.2         // Ngưỡng phát hiện đỉnh (g)
+#define SAMPLE_RATE 100      // Tốc độ đọc (1000 Hz)
+#define SAMPLE_COUNT 100     // Số mẫu đọc mỗi giây
+#define THRESHOLD 0.5         // Ngưỡng phát hiện đỉnh (g)
 #define ALPHA 0.1             // Hệ số lọc thông thấp
 
 #define RREF      430.0
@@ -105,7 +105,7 @@ float calculateFrequency(float *data) {
   }
 
   // Tính tần số
-  return (float)peakCount / 2.0; // Số đỉnh chia đôi để lấy số chu kỳ
+  return (float)peakCount - 1; // Số đỉnh chia đôi để lấy số chu kỳ
 }
 
 // Hàm lọc thông thấp
